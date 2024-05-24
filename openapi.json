@@ -1,0 +1,58 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Javascript Module API",
+    "version": "1.0.0",
+    "description": "# Introduction\nWelcome to the reference for the Javascript Module API!",
+    "contact": {
+      "name": "Javascript Module API",
+      "url": "https://www.cloud-apim.com",
+      "email": "contact@cloud-apim.com"
+    },
+    "x-logo-none": {
+      "url": "https://www.cloud-apim.com/assets/logo/cloud-apim-logo-inverted.png"
+    }
+  },
+  "tags": [],
+  "paths": {
+    "/demo": {
+      "get": {
+        "tags": [],
+        "summary": "",
+        "operationId": "getJsDemo",
+        "x-cloud-apim-backend": {
+          "$ref": "#/components/x-cloud-apim-backends/jsdemobackend"
+        },
+        "x-cloud-apim-plugins": {
+          "$ref": "#/components/x-cloud-apim-plugins/jsdemoplugin"
+        }
+      }
+    }
+  },
+  "components": {
+    "x-cloud-apim-plugins": {
+      "jsdemoplugin": [
+        {
+          "enabled": true,
+          "plugin": "cp:cloud-apim.plugins.JsModulePlugin",
+          "config": {
+            "module": "/modules/hello.js"
+          }
+        }
+      ]
+    },
+    "x-cloud-apim-backends": {
+      "jsdemobackend": {
+        "targets": [
+          {
+            "hostname": "jsonplaceholder.typicode.com",
+            "port": 443,
+            "tls": true
+          }
+        ],
+        "root": "/",
+        "rewrite": false
+      }
+    }
+  }
+}
